@@ -33,13 +33,39 @@ VPC10 (LAN 1): Received host not reachable errors when trying to reach other net
 VPC6 (LAN 2): Can reach its gateway but receives Destination host unreachable when trying to reach LAN 1.
 ```
 
-### **2. Checking Router R1 (The Silent Gateway)**
+### **2. Analysis & Identification:**
 We check the interface status on R1 to see if the paths are active.
+
+Based on these outputs, we identified two primary points of failure:
+```text
+VPC10 Side: The "host not reachable" error indicates that the device doesn't know where to send the packet because its Default Gateway is misconfigured.
+
+Router Side: Since LAN 2 cannot reach LAN 1 despite having a working gateway, it suggests the Router's LAN 1 interface is either down or disconnected.
+```
+### **3. Checking Router R1 (The Silent Gateway) & Isolated Host (VPC10)**
+We check the interface status on R1 to see if the paths are active.
+
+![Control](./check.png)
+
 ```text
 R1# show ip interface brief
 Interface              IP-Address      OK? Method Status                Protocol
 Ethernet0/0            192.168.1.254   YES manual administratively down down    <-- 🚩 ISSUE FOUND: Interface is Shutdown
 Ethernet0/1            192.168.2.254   YES manual up                    up
+```
+
+```text
+VPC10> show ip
+
+NAME        : VPC10[1]
+IP/MASK     : 192.168.1.1/24
+GATEWAY     : 192.168.1.253  <-- 🚩 ISSUE FOUND: The gateway is misconfigured
+DNS         :
+MAC         : 00:50:79:66:68:0a
+LPORT       : 20000
+RHOST:PORT  : 127.0.0.1:30000
+MTU         : 1500
+
 ```
 
 ---
@@ -51,6 +77,8 @@ Ethernet0/1            192.168.2.254   YES manual up                    up
 ---
 
 ## ✅ Resolution Steps
+
+![Correction](./reconfig.png)
 
 ### **Fix 1: Correct VPC10 Gateway**
 ```text
@@ -72,10 +100,16 @@ R1# write memory
 ## 🧪 Final Verification
 Once the fixes are applied, we perform an end-to-end connectivity test.
 
+![Correction](./lastcheck.png)
+
 ```text
 VPC10> ping 192.168.2.5
 84 bytes from 192.168.2.5 icmp_seq=1 ttl=63 time=1.124 ms
 84 bytes from 192.168.2.5 icmp_seq=2 ttl=63 time=0.985 ms
+VPC10> ping 192.168.2.254
+84 bytes from 192.168.2.254 icmp_seq=1 ttl=63 time=1.124 ms
+84 bytes from 192.168.2.254 icmp_seq=2 ttl=63 time=0.985 ms
+
 
 **Result:** Inter-VLAN routing is successfully restored! 🎉
 ```
