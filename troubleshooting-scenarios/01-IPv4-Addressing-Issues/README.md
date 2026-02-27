@@ -12,7 +12,7 @@ The IT department has received multiple tickets from users regarding connectivit
 ## 🗺️ Topology Overview
 We are using the same infrastructure from the core labs, but with intentional configuration errors.
 Note: For the full working version and detailed configuration of this topology, please visit the
-[View Core Lab Documentation]([../../network-labs-eve-ng/lab-01-IPv4-Addressing/](https://github.com/eneskaankpln/network-labs-eve-ng/tree/2850245b18c60a512a54cdcc8180693ab7b38147/lab-01-IPv4-Adressing))
+[View Core Lab Documentation](../../network-labs-eve-ng/lab-01-IPv4-Addressing/)
 
 ![Lab Topolojisi](./IPv4-Addressing.png)
 
