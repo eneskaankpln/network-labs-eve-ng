@@ -30,6 +30,9 @@ To master routing, one must understand the "Routing Logic." When a router receiv
    * **OSPF:** 110
    * In this lab we won't change AD of any routes it's going to explain in another lab. 
 3. **Metric:** If multiple routes have the same AD, the router chooses the path with the lowest cost (bandwidth, hop count, etc.).
+4. **Tie-Breaker: Equal Cost Multi-Path (ECMP)**
+If both the Administrative Distance and the Metric are identical for multiple paths to the same destination, the router doesn't just pick one. Instead, it performs Load Balancing.
+ This mechanism, known as ECMP, allows the router to install all equal-cost paths into the routing table and distribute traffic across them simultaneously, providing both redundancy and increased throughput.
 
 ### **Why Static Routing?**
 * **Predictability:** You define the exact path traffic must take.
