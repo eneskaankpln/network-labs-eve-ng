@@ -8,7 +8,7 @@ The network consists of a central router (R1) connecting two separate broadcast 
 * **LAN 1:** Operates on the `192.168.1.0/24` subnet.
 * **LAN 2:** Operates on the `192.168.2.0/24` subnet.
 
- `![Topology](IPv4-Addressing.png)`
+![Lab Topolojisi](IPv4-Addressing.png)
 
 ## 📊 IP Addressing Table
 
