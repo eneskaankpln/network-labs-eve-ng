@@ -70,4 +70,24 @@ R1(config-if)# no shutdown
 ```
 
 ### **2. Static Route Implementation**
+By default, R1 only knows about its "Directly Connected" networks. To reach the Green LAN, we must manually inject a route pointing to the next-hop IP (R3's interface).
 
+! Syntax: ip route [Destination_Network] [Mask] [Next-Hop_IP]
+R1(config)# ip route 192.168.4.0 255.255.255.0 10.0.1.2
+
+![Route Configuration](./routing-example.png)
+
+Note: Routing is a two-way street. For a ping to be successful, the destination router (R4) and all intermediate routers must have return routes back to the source network (192.168.1.0/24).
+
+![Topology's Routing Tables](./routing-tables.png)
+
+###***🧪 Verification & Troubleshooting***
+Use these Cisco IOS commands to verify your routing table and path selection:
+
+show ip route: View the routing table. Look for the "S" code indicating a Static route.
+
+show ip interface brief: Confirm all transit interfaces are up/up.
+
+ping 192.168.4.1: Verify end-to-end reachability between LANs.
+
+traceroute 192.168.4.1: Trace the hop-by-hop path. Use this to confirm if traffic is taking the R3 path or the R2 path.
