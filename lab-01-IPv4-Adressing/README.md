@@ -65,7 +65,9 @@ interface Ethernet0/1
 !
 end
 write memory
-### **LAN 1 - VPC Configurations (192.168.1.0/24)**
+```
+
+### **LAN 2 - VPC Configurations (192.168.2.0/24)**
 
 ```text
 ! VPC10 Configuration
