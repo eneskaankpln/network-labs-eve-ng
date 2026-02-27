@@ -71,10 +71,10 @@ R1(config-if)# no shutdown
 
 ### **2. Static Route Implementation**
 By default, R1 only knows about its "Directly Connected" networks. To reach the Green LAN, we must manually inject a route pointing to the next-hop IP (R3's interface).
-
-! Syntax: ip route [Destination_Network] [Mask] [Next-Hop_IP]
+```text
+Syntax: ip route [Destination_Network] [Mask] [Next-Hop_IP]
 R1(config)# ip route 192.168.4.0 255.255.255.0 10.0.1.2
-
+```
 ![Route Configuration](./routing-example.png)
 
 Note: Routing is a two-way street. For a ping to be successful, the destination router (R4) and all intermediate routers must have return routes back to the source network (192.168.1.0/24).
