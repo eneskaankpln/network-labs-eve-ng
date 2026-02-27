@@ -18,15 +18,19 @@ Note: For the full working version and detailed configuration of this topology, 
 
 ---
 
-## 🕵️ Investigation Phase
+## 🕵️ Investigation Phase: Connectivity Testing
+To isolate the issue, we performed connectivity tests from different points in the network. The results are captured below:
 
-### **1. Checking VPC10 (The Isolated Host)**
-First, we verify the IP configuration on VPC10 to ensure it points to the correct gateway.
+### **1. Observations from Ping Tests:**
+
+![Ping Testi](./ping-test.png)
+
 ```text
-VPC10> show ip
-NAME   : VPC10[1]
-IP/Net : 192.168.1.1/24
-GATE   : 192.168.1.253  <-- 🚩 POTENTIAL ISSUE: Gateway should be .254
+VPC8 (LAN 1): Can ping VPC10 (Internal LAN 1 is OK), but cannot reach LAN 2.
+
+VPC10 (LAN 1): Received host not reachable errors when trying to reach other networks.
+
+VPC6 (LAN 2): Can reach its gateway but receives Destination host unreachable when trying to reach LAN 1.
 ```
 
 ### **2. Checking Router R1 (The Silent Gateway)**
