@@ -10,6 +10,10 @@ The network consists of a central router (R1) connecting two separate broadcast 
 
 ![Lab Topolojisi](IPv4-Addressing.png)
 
+## 📥 Download Lab
+You can download the EVE-NG topology file here: 
+[Download IPv4 Addressing Lab (.unl)](./IPv4 Addressing.unl)
+
 ## 📊 IP Addressing Table
 
 | Device | Interface | IP Address | Subnet Mask | Default Gateway |
@@ -37,9 +41,55 @@ The network consists of a central router (R1) connecting two separate broadcast 
  ### 🧪 Verification & Packet Capture
  * Successful ICMP communication between LAN 2 (VPC6) and LAN 1 (192.168.1.1), along with Wireshark packet capture verifying the Echo Request and Echo Reply process.
 
-![Ping and Wireshark Verification](buraya-resmin-linkini-veya-adini-koyacaksin)
+![Ping and Wireshark Verification](ping-test.png)
 
 ## 🔍 Verification Commands
 Use the following Cisco IOS commands on R1 to verify your configuration:
 * `show ip interface brief`
 * `show ip route`
+
+## 💻 Device Configurations
+
+### R1 (Cisco Router)
+```text
+enable
+configure terminal
+!
+interface Ethernet0/0
+ ip address 192.168.1.254 255.255.255.0
+ no shutdown
+!
+interface Ethernet0/1
+ ip address 192.168.2.254 255.255.255.0
+ no shutdown
+!
+end
+write memory
+
+### LAN 1 - VPC Configurations (192.168.1.0/24)
+```text
+! VPC10 Configuration
+ip 192.168.1.1 255.255.255.0 192.168.1.254
+save
+
+! VPC8 Configuration
+ip 192.168.1.2 255.255.255.0 192.168.1.254
+save
+
+! VPC7 Configuration
+ip 192.168.1.3 255.255.255.0 192.168.1.254
+save
+
+! VPC4 Configuration
+ip 192.168.2.4 255.255.255.0 192.168.2.254
+save
+
+### LAN 1 - VPC Configurations (192.168.1.0/24)
+```text
+! VPC6 Configuration
+ip 192.168.2.5 255.255.255.0 192.168.2.254
+save
+
+! VPC5 Configuration
+ip 192.168.2.6 255.255.255.0 192.168.2.254
+save
