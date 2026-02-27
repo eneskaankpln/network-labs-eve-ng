@@ -91,3 +91,7 @@ show ip interface brief: Confirm all transit interfaces are up/up.
 ping 192.168.4.1: Verify end-to-end reachability between LANs.
 
 traceroute 192.168.4.1: Trace the hop-by-hop path. Use this to confirm if traffic is taking the R3 path or the R2 path.
+
+![Routing Tracing](./trace.png)
+
+
