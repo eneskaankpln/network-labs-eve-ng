@@ -50,7 +50,7 @@ Use the following Cisco IOS commands on R1 to verify your configuration:
 
 ## 💻 Device Configurations
 
-### R1 (Cisco Router)
+### **R1 (Cisco Router)**
 ```text
 enable
 configure terminal
@@ -65,8 +65,8 @@ interface Ethernet0/1
 !
 end
 write memory
+### **LAN 1 - VPC Configurations (192.168.1.0/24)**
 
-### LAN 1 - VPC Configurations (192.168.1.0/24)
 ```text
 ! VPC10 Configuration
 ip 192.168.1.1 255.255.255.0 192.168.1.254
@@ -79,13 +79,15 @@ save
 ! VPC7 Configuration
 ip 192.168.1.3 255.255.255.0 192.168.1.254
 save
+```
 
+### **LAN 2 - VPC Configurations (192.168.2.0/24)**
+
+```text
 ! VPC4 Configuration
 ip 192.168.2.4 255.255.255.0 192.168.2.254
 save
 
-### LAN 1 - VPC Configurations (192.168.1.0/24)
-```text
 ! VPC6 Configuration
 ip 192.168.2.5 255.255.255.0 192.168.2.254
 save
@@ -93,3 +95,4 @@ save
 ! VPC5 Configuration
 ip 192.168.2.6 255.255.255.0 192.168.2.254
 save
+```
