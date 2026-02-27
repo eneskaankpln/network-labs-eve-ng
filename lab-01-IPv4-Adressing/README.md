@@ -33,7 +33,11 @@ The network consists of a central router (R1) connecting two separate broadcast 
    * Ensure both interfaces are enabled using the `no shutdown` command.
 3. **Verification & Testing:**
    * Verify direct connectivity: Ping from VPC10 to its gateway (192.168.1.254).
-   * Verify inter-network routing: Ping from VPC10 (LAN 1) to VPC4 (LAN 2). 
+   * Verify inter-network routing: Ping from VPC10 (LAN 1) to VPC4 (LAN 2).
+ ### 🧪 Verification & Packet Capture
+ * Successful ICMP communication between LAN 2 (VPC6) and LAN 1 (192.168.1.1), along with Wireshark packet capture verifying the Echo Request and Echo Reply process.
+
+![Ping and Wireshark Verification](buraya-resmin-linkini-veya-adini-koyacaksin)
 
 ## 🔍 Verification Commands
 Use the following Cisco IOS commands on R1 to verify your configuration:
