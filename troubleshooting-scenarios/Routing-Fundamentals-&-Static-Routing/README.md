@@ -89,12 +89,18 @@ Note: For the full working version and detailed configuration of this topology, 
  * This route is configured with an Administrative Distance (AD) of 255: ip route 192.168.4.0   255.255.255.0 10.0.34.2 255.
  * Impact: In Cisco IOS, an AD of 255 indicates that the route is "untrustworthy". Routes with this value are never installed in the routing table, which is why only the "broken" $10.0.1.3$ route appears in the show ip route output.
 * **Solution:**
-*The solution is as follows.
+* The solution is as follows.
 ---
 ![Solution R1](./5.png)
 ---
-
-
+## 🔎 Step 3: Investigating Router 4 (R4) Status
+* **Missing Route on R4:**
+* When we tried to traceroute again we are seeing that packets being dropped at R4. Thus there must be a configuration mistake about R4. Let's check. 
+![Missing Route on R4](./6.png)
+* Router4 serves as the default gateway for VPC8. However, its routing table shows it only knows about its directly connected networks ($10.0.12.0/30$, $10.0.22.0/30$, and $192.168.4.0/24$).It has no entry for the $192.168.1.0/24$ network.
+* Result: When VPC8 attempts to reply to VPC7, Router4 receives the packet and drops it because it does not know where to send traffic destined for the $192.168.1.0/24$ segment.
+* Solution
+![Solution of R4](./7.png)
 
 
 
