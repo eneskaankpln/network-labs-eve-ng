@@ -1,5 +1,13 @@
 # 🔍 Troubleshooting Lab 01: The Isolated Host & The Silent Gateway
 
+### *Lab 02: Core Forwarding & Path Selection*
+
+![EVE-NG](https://img.shields.io/badge/Platform-EVE--NG-orange?style=flat-square)
+![Cisco IOL](https://img.shields.io/badge/Image-Cisco%20IOL-blue?style=flat-square)
+![Difficulty](https://img.shields.io/badge/Difficulty-beginner-green?style=flat-square)
+
+---
+
 ## 📝 The Scenario
 The IT department has received multiple tickets from users regarding connectivity issues. Your mission is to restore full communication between LAN 1 and LAN 2 by identifying and fixing misconfigurations.
 
