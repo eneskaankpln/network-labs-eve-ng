@@ -69,6 +69,3 @@ Note: For the full working version and detailed configuration of this topology, 
 
 ---
 
-### 👨‍💻 Lab Author
-**Enes Kaan Kaplan**
-*Network Engineering Student*
