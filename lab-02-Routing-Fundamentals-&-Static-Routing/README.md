@@ -46,6 +46,10 @@ Our topology features a 4-router core ring connecting two geographically or logi
 
 ![Routing Fundamentals Topology](./routing-topology.png)
 
+## 📥 Download Lab
+You can download the EVE-NG topology file here: 
+[Download IPv4 Addressing Lab (.unl)](./Routing%20Fundamentals.unl)
+
 ### **Network Addressing Table (Subnets)**
 | Network | Description | Segment Type |
 | :--- | :--- | :--- |
