@@ -14,6 +14,15 @@ Currently, the junior administrator has applied several static routes, but **VPC
 
 ---
 
+## 🗺️ Topology Overview
+We are using the same infrastructure from the core labs, but with intentional configuration errors.
+Note: For the full working version and detailed configuration of this topology, please visit the
+[View Core Lab Documentation](../../lab-02-Routing-Fundamentals-&-Static-Routing/)
+
+![Lab Topolojisi](./routing-topology.png)
+
+---
+
 ## 🚩 Problem Statements
 1.  **Connectivity Failure:** `VPC7` (192.168.1.1) cannot ping `VPC8` (192.168.4.1).
 2.  **Partial Reachability:** `Router1` can ping `10.0.1.1` (R3), but cannot reach the interface `10.0.22.1` on the same router.
