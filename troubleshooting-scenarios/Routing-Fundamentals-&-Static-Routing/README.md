@@ -65,16 +65,31 @@ Note: For the full working version and detailed configuration of this topology, 
 * **Conclusion:** Since 192.168.1.254 is the IP address assigned to Router1's Ethernet0/2 interface, the investigation must move to Router1 to identify why it is failing to forward traffic toward the destination network.
 
 ## 🔎 Step 2: Investigating Router 1 (R1) Status
-Objective: Audit the interface health and routing logic on the gateway router.
+* **Objective:** Audit the interface health and routing logic on the gateway router.
 
-Interface Verification: Running show ip int brief on Router1 confirms that all relevant interfaces (Eth0/0, Eth0/1, and Eth0/2) are in an up/up status and have the correct IP addresses assigned according to the topology.
+* **Interface Verification:**
+* Running show ip int brief on Router1 confirms that all relevant interfaces (Eth0/0, Eth0/1, and Eth0/2) are in an up/up status and have the correct IP addresses assigned according to the topology.
+  ![status](./2.png)
 
-Routing Table Audit: A show ip route command was executed to verify if Router1 knows how to reach the 192.168.4.0/24 network.
+* **Routing Table Audit:**
+* A show ip route command was executed to verify if Router1 knows how to reach the 192.168.4.0/24 network.
+  ![routing table](./3.png)
 
-Identifying the Misconfiguration: The routing table reveals a static route for the destination, but it is configured with an incorrect next-hop of 10.0.1.3.
-
-The Problem: Per the network topology, the valid next-hop on that segment is R3 at 10.0.1.1; therefore, Router1 is attempting to forward traffic to a non-existent IP address.
-
+* **Identifying the Misconfiguration:**
+* The routing table reveals a static route for the destination, but it is configured with an incorrect next-hop of 10.0.1.3.
+* Also, route 10.0.34.2 is not visible in the routing table. Let's check the running-config to see if that's the case.
+ ![R1's running-config](./4.png)
+* **The Next-Hop Mismatch (Primary Path):**
+ * Per the network topology, the valid next-hop on that segment is R3 at 10.0.1.1; therefore, Router1 is attempting to forward traffic to a non-existent IP address.
+ *  According to the network topology, the link between Router1 and Router3 uses the $10.0.1.0/30$ subnet.
+ *  In a $/30$ network, the only usable host IP addresses are .1 and .2.Impact: The IP $10.0.1.3$ is the broadcast address for that segment, not a valid host.
+ *  Consequently, Router1 is attempting to forward traffic to an IP that does not exist as a functional gateway, causing the traceroute to fail immediately after the first hop.
+* **The "Hidden" AD 255 Bug (Backup Path) :**
+ * The running configuration reveals a second static route intended to provide redundancy via Router2 ($10.0.34.2$).
+ * This route is configured with an Administrative Distance (AD) of 255: ip route 192.168.4.0   255.255.255.0 10.0.34.2 255.
+ * Impact: In Cisco IOS, an AD of 255 indicates that the route is "untrustworthy". Routes with this value are never installed in the routing table, which is why only the "broken" $10.0.1.3$ route appears in the show ip route output.
+* **Solution:**
+  ![Solution R1](./5.png)
 ---
 
 ## ✅ Success Criteria
