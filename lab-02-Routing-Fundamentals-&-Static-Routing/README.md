@@ -73,7 +73,7 @@ R1(config-if)# no shutdown
 By default, R1 only knows about its "Directly Connected" networks. To reach the Green LAN, we must manually inject a route pointing to the next-hop IP (R3's interface).
 ```text
 Syntax: ip route [Destination_Network] [Mask] [Next-Hop_IP]
-R1(config)# ip route 192.168.4.0 255.255.255.0 10.0.1.2
+R1(config)# ip route 192.168.4.0 255.255.255.0 10.0.1.1
 ```
 ![Route Configuration](./routing-example.png)
 
