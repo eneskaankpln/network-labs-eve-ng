@@ -50,15 +50,30 @@ Note: For the full working version and detailed configuration of this topology, 
 
 ---
 
+
 ## 🔍 Troubleshooting Steps
-1.  **Check Neighbors:** Use `show cdp neighbors` to verify if all links are physically connected to the correct ports as per the diagram.
-2.  **Verify Gateways:** Ensure VPCs have their default gateways set to `.254`.
-3.  **Trace the Route:** Run `traceroute 192.168.4.1` from `VPC7` and see where it stops.
-4.  **Analyze Routing Table:**
-    ```bash
-    R1# show ip route static
-    R1# show ip route 192.168.4.1
-    ```
+
+## 🔎 Step 1: Initial Connectivity Analysis
+* **Objective:** Confirm the scope of the connectivity failure from the source host.
+
+* **Connectivity Test:** A ping from VPC7 to the destination VPC8 (192.168.4.1) results in a 100% packet loss with multiple timeouts.
+
+* **Path Discovery:** To isolate where the packets are being dropped, a trace 192.168.4.1 was initiated from VPC7.
+    ![trace](./1.png)
+* **The Bottleneck:** The traceroute output shows that the packet successfully reaches the first hop, 192.168.1.254 (the default gateway), but cannot proceed any further, resulting in timeouts for all subsequent hops.
+
+* **Conclusion:** Since 192.168.1.254 is the IP address assigned to Router1's Ethernet0/2 interface, the investigation must move to Router1 to identify why it is failing to forward traffic toward the destination network.
+
+## 🔎 Step 2: Investigating Router 1 (R1) Status
+Objective: Audit the interface health and routing logic on the gateway router.
+
+Interface Verification: Running show ip int brief on Router1 confirms that all relevant interfaces (Eth0/0, Eth0/1, and Eth0/2) are in an up/up status and have the correct IP addresses assigned according to the topology.
+
+Routing Table Audit: A show ip route command was executed to verify if Router1 knows how to reach the 192.168.4.0/24 network.
+
+Identifying the Misconfiguration: The routing table reveals a static route for the destination, but it is configured with an incorrect next-hop of 10.0.1.3.
+
+The Problem: Per the network topology, the valid next-hop on that segment is R3 at 10.0.1.1; therefore, Router1 is attempting to forward traffic to a non-existent IP address.
 
 ---
 
