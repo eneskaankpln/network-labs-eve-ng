@@ -89,7 +89,10 @@ Note: For the full working version and detailed configuration of this topology, 
  * This route is configured with an Administrative Distance (AD) of 255: ip route 192.168.4.0   255.255.255.0 10.0.34.2 255.
  * Impact: In Cisco IOS, an AD of 255 indicates that the route is "untrustworthy". Routes with this value are never installed in the routing table, which is why only the "broken" $10.0.1.3$ route appears in the show ip route output.
 * **Solution:**
+* 
   ![Solution R1](./5.png)
+
+
 ---
 
 ## ✅ Success Criteria
