@@ -105,7 +105,9 @@ Note: For the full working version and detailed configuration of this topology, 
 * Result: When VPC8 attempts to reply to VPC7, Router4 receives the packet and drops it because it does not know where to send traffic destined for the $192.168.1.0/24$ segment.
 * Solution
 ---
-![Solution of R4](./7.png)
+![Solution of R4 1](./7.png)
+![Solution of R4 2](./7.5.png)
+![Solution of R4](./15.png)
 ---
 
 
