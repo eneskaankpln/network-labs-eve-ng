@@ -110,7 +110,7 @@ Note: For the full working version and detailed configuration of this topology, 
 ![Solution of R4](./15.png)
 ---
 
-## 🔎 Step 3: Investigating Router 3 (R3) Partial Reachability
+## 🔎 Step 4: Investigating Router 3 (R3) Partial Reachability
 * **Objective:** Diagnose why Router1 can successfully ping Router3's ingress interface but fails to reach its egress interface.
 
 * **Reachability & Routing Verification:**
@@ -121,26 +121,21 @@ Note: For the full working version and detailed configuration of this topology, 
 * **Interface Configuration Audit:**
 * A review of Router3's running configuration was performed to verify the local interface parameters for Ethernet0/1 and Ethernet0/2.
   ![R3's running-config](./9.png)
-
-* **Routing Table Audit (Return Path):**
-* Router3's routing table was audited to ensure proper return paths exist for ICMP replies. The static route for the `192.168.1.0/24` network was verified and re-applied to point to the correct next-hop on R1 (`10.0.1.2`).
-  ![R3 routing table](./11.png)
-
-* **Identifying the Misconfiguration:**
+  
 * **The Subnet Mask Mismatch:**
   * The interface audit reveals that Router3's `Ethernet0/2` interface is incorrectly configured with a `/24` subnet mask (`255.255.255.0`).
   * In a point-to-point link topology, this should be a `/30` subnet mask (`255.255.255.252`).
   * Impact: An incorrect subnet mask prevents proper routing adjacencies and creates broadcast domain inconsistencies with the neighboring router on that specific segment.
-* **The Missing Route on Router 1:**
-  * Even after identifying the interface issue on R3, subsequent pings from Router1 to `10.0.22.2` continue to fail. This confirms that R1's routing table still lacks the necessary route for the `10.0.22.0` network, causing it to drop the packets before they even leave the router.
-  ![Persistent Ping Failure](./14.png)
+  ---
+    ![R3's running-config](./10.png)
+  ---  
+* **Routing Table Audit (Return Path):**
+* Router3's routing table was audited to ensure proper return paths exist for ICMP replies. The static route for the `192.168.1.0/24` network was verified and re-applied to point to the correct next-hop on R1 (`10.0.1.2`).
+  ![R3 routing table](./11.png)
 
-* **Solution:**
-* The structural configuration error on Router3 is resolved by entering interface configuration mode for `Ethernet0/2` and applying the correct IP address alongside the `/30` subnet mask. *(Note: To achieve full end-to-end ping success, a static or dynamic route for `10.0.22.0/30` must also be added to Router1 later).*
----
-![Solution R3](./13.png)
----
+* **Reachability Test:**
 
+![R1 pinging to reach R3's e0/2 interface](./14.png)
 
 ---
 
