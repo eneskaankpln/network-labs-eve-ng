@@ -98,6 +98,8 @@ Note: For the full working version and detailed configuration of this topology, 
 * When we tried to traceroute again we are seeing that packets being dropped at R4. Thus there must be a configuration mistake about R4. Let's check.
 ---
 ![Missing Route on R4](./6.png)
+
+![Routing Table R4](./7.png)
 ---
 * Router4 serves as the default gateway for VPC8. However, its routing table shows it only knows about its directly connected networks ($10.0.12.0/30$, $10.0.22.0/30$, and $192.168.4.0/24$).It has no entry for the $192.168.1.0/24$ network.
 * Result: When VPC8 attempts to reply to VPC7, Router4 receives the packet and drops it because it does not know where to send traffic destined for the $192.168.1.0/24$ segment.
