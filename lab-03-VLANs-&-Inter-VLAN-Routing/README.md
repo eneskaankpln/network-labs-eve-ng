@@ -13,7 +13,7 @@ To fully understand this lab, it is important to be familiar with the following 
 
 ## 📌 Topology Diagram
 ![Topology Diagram](./topology.png) 
-*(Note: Replace the placeholder above with the actual link to your image in the repository.)*
+
 
 ## 🏢 Network Architecture & VLAN Table
 
