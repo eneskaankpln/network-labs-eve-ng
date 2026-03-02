@@ -28,7 +28,7 @@ The network design involves subnetting a `192.168.1.0/24` address space into `/2
 ## 🛠️ Device Roles & Connections
 
 * **R1 (Router):** The core router configured for Inter-VLAN Routing (Router-on-a-Stick) to enable communication between isolated VLANs. It connects directly to the R2 switch.
-* **R2 & R3 (Switches):** Although named R2 and R3 in the topology, these devices operate as Layer 2 Switches.
+* **SW1 & SW2 (Switches):** Although named R2 and R3 in the topology, these devices operate as Layer 2 Switches.
     * Since VLAN 10 spans across both switches, the link between them (R3 e1/0 <-> R2 e0/3) must be configured as an **802.1Q Trunk**.
     * All interfaces connecting to the end devices (PCs) are configured in **Access** mode.
 
