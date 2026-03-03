@@ -14,6 +14,11 @@
 ## 🏢 Enterprise Scenario Context
 * The company operates a segmented VLAN architecture:
 
+[Download VLANs & Inter-VLAN Routing (.unl)](./VLAN.unl)
+
+![VLAN Topology](./topology.png)
+
+
 | VLAN | Department | Subnet           | Default Gateway |
 | ---- | ---------- | ---------------- | --------------- |
 | 10   | Office     | 192.168.1.0/26   | 192.168.1.62    |
