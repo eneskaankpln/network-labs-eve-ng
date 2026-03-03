@@ -5,8 +5,38 @@
 
 ---
 
-* This document provides a structured troubleshooting scenario for the VLANs & Inter-VLAN Routing (ROAS) lab.
-* The goal is to simulate real-world misconfigurations and methodically identify, isolate, and resolve them using Cisco IOS verification commands.
+* Unlike the original lab, this scenario introduces multiple simultaneous failures, asymmetric behavior, trunk inconsistencies, and Layer 3 misconfigurations.
+
+* You are no longer configuring the network.
+
+* You are operating as a Network Engineer during an outage window.
+
+## 🏢 Enterprise Scenario Context
+* The company operates a segmented VLAN architecture:
+| VLAN | Department | Subnet           | Default Gateway |
+| ---- | ---------- | ---------------- | --------------- |
+| 10   | Office     | 192.168.1.0/26   | 192.168.1.62    |
+| 20   | Home       | 192.168.1.128/26 | 192.168.1.190   |
+| 30   | HR         | 192.168.1.64/26  | 192.168.1.126   |
+
+### The network uses:
+
+* IEEE 802.1Q trunking
+
+* Router-on-a-Stick (ROAS)
+
+* Cisco IOL images on EVE-NG
+
+* After a weekend maintenance window, multiple tickets were opened.
+## 🎫 Active Enterprise Incident Tickets
+| Ticket ID | Severity | Description                                                                         |
+| --------- | -------- | ----------------------------------------------------------------------------------- |
+| INC-101   | High     | Office users on SW1 cannot communicate with Office users on SW2. Gateway reachable. |
+| INC-102   | Critical | HR department completely isolated. Cannot ping gateway.                             |
+| INC-103   | Medium   | Intermittent packet loss between VLAN 10 and VLAN 20.                               |
+| INC-104   | Low      | Console flooded with CDP Native VLAN mismatch warnings.                             |
+| INC-105   | High     | Home VLAN can reach Office, but Office cannot reach Home.                           |
+
 
 ## 🚨 Scenario Background
 
@@ -22,6 +52,19 @@
 | **INC-003** | Network Admin | "The console lines on SW1 and SW2 are being flooded with CDP (Cisco Discovery Protocol) warning messages every minute, making it hard to type commands." |
 
 ---
+## 🎯 Objective
+
+### Restore full:
+
+* Layer 2 connectivity
+
+* Inter-VLAN routing
+
+* Trunk consistency
+
+* Bidirectional communication
+
+* Without changing topology.
 
 ## 🛠️ Troubleshooting Tasks & Methodology
 
@@ -36,17 +79,7 @@ To solve these tickets, you will need to verify Layer 2 and Layer 3 configuratio
     * Ensure the subnet masks and IP addresses match your design table.
 
 ---
+## 🧩 Hidden Misconfigurations (Multi-Failure Design)
+* This lab intentionally includes five simultaneous configuration errors.
 
-## 🛑 Spoiler Alert: The Misconfigurations (Answer Key)
 
-*If you want to solve the lab yourself, stop reading here! If you are ready to check your answers or need a hint, expand the sections below.*
-
-### Resolving INC-001 (Office PC to Office PC Failure)
-**The Problem:** The junior admin accidentally removed VLAN 10 from the allowed VLAN list on the trunk link of SW1.
-**Diagnosis:** Running `show interfaces trunk` on SW1 reveals that only VLANs 20 and 30 are allowed on the trunk.
-**The Fix on SW1:**
-```text
-SW1# configure terminal
-SW1(config)# interface e1/0
-SW1(config-if)# switchport trunk allowed vlan add 10
-```
