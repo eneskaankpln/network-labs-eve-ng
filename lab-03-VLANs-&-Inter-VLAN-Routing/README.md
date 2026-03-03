@@ -1,4 +1,9 @@
 # 🖧 🔀 Lab 03: VLANs & Inter-VLAN Routing
+![EVE-NG](https://img.shields.io/badge/Platform-EVE--NG-orange?style=flat-square)
+![Cisco IOL](https://img.shields.io/badge/Image-Cisco%20IOL-blue?style=flat-square)
+![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-orange?style=flat-square)
+
+---
 
 This project is a network topology designed to model fundamental switching concepts, VLAN configuration, and Router-on-a-Stick (ROAS) architecture for communication between different networks. It has been built and tested using Cisco IOL images on EVE-NG.
 
