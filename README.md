@@ -27,14 +27,23 @@ To run these lab topologies successfully, the following setup is recommended:
   * **Layer 3:** `i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin`
 
 <a id="lab-scenarios"></a>
+<a id="lab-scenarios"></a>
 ## 🛠️ Lab Scenarios
-The labs are structured around specific enterprise networking concepts:
 
+### ✅ Currently Available
+* **IPv4 Addressing:** Subnetting, VLSM, and core IP addressing concepts.
+* **Routing Fundamentals:** Static routing, default routes, and basic routing table operations.
 * **VLANs & Inter-VLAN Routing:** Layer 2 network segmentation and Layer 3 routing via SVIs and Router-on-a-Stick (ROAS).
-* **OSPF:** Single-area and Multi-area Open Shortest Path First implementations, including neighbor adjacencies and route distribution.
-* **ACL (Access Control Lists):** Standard and Extended ACLs for secure traffic filtering and network policy enforcement.
-* **NAT (Network Address Translation):** Configuration of Static NAT, Dynamic NAT, and PAT (Overload) for internet connectivity.
-* **Troubleshooting:** Intentional break-fix scenarios designed to test analytical skills and protocol knowledge.
+
+### 🚀 Coming Soon!
+* **DTP & VTP:** Dynamic Trunking Protocol and VLAN Trunking Protocol configurations.
+* **STP (Spanning Tree Protocol) & Features:**
+* **Rapid Spanning Tree Protocol (RSTP)**
+* **EtherChannel:** Link aggregation for Layer 2 and Layer 3.
+* **Dynamic Routing Fundamentals**
+* **RIP & EIGRP:** Distance vector and advanced distance vector routing protocols.
+* **OSPF (Open Shortest Path First):**
+* **First Hop Redundancy Protocols (FHRP):** HSRP, VRRP, and GLBP concepts.
 
 <a id="how-to-use"></a>
 ## 🚀 How to Use
