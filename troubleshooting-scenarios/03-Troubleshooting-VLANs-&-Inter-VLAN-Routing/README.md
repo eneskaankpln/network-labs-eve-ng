@@ -13,11 +13,13 @@
 
 ## 🏢 Enterprise Scenario Context
 * The company operates a segmented VLAN architecture:
+
 | VLAN | Department | Subnet           | Default Gateway |
 | ---- | ---------- | ---------------- | --------------- |
 | 10   | Office     | 192.168.1.0/26   | 192.168.1.62    |
 | 20   | Home       | 192.168.1.128/26 | 192.168.1.190   |
 | 30   | HR         | 192.168.1.64/26  | 192.168.1.126   |
+
 
 ### The network uses:
 
