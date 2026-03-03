@@ -68,7 +68,9 @@ Now let's check if our switchport is actually an access port. To do this;
 ```text
 SW(config-if)# do show interfaces e0/0 switchport
 ```
+---
 ![Görsel 2](./img-2.png)
+---
 
 * The first things that catch our attention here are the administrative mode and operational mode outputs.
 * Administrative mode indicates that the switchport is in access mode as "static access". We will explain operational mode in the Dynamic Trunking Protocol (DTP) section, which we will cover in later labs.
@@ -78,8 +80,9 @@ SW(config-if)# do show interfaces e0/0 switchport
 ```text
 SW(config-if)# switchport access vlan 10
 ```
+---
 ![Görsel 3](./img-3.png)
-
+---
 * When examining the image, pay attention to the output of the command. It states that VLAN10 does not exist and what was created.
 * Assigning a VLAN to a port is another way to create a VLAN.
 * If you want to create a VLAN, you can use the following command.
@@ -88,16 +91,21 @@ SW(config-if)# switchport access vlan 10
 SW(config)# vlan vlan-id
 ```
 * Now let's quickly repeat the process on port e0/1, which is connected to my other VLAN 10 device.
+---
 ![Görsel 4](./img-4.png)
+---
 * After quickly repeating the process for port e0/1, let's change our VLAN name.
 * Now let's look at our SW1 VLANs again.
+---
 ![Görsel 5](./img-5.png)
-
+---
 * As you can see, VLAN10 has been added and we've named it Office as desired.
 * In the Office VLAN, we can see the active ports as e0/0 and e0/1.
 * Now, let's quickly assign the remaining access ports for SW1 and SW2.
+---
 ![Görsel 6](./img-6.png)
 ![Görsel 7](./img-7.png)
+---
 * Now let's configure the interfaces connecting the SW1-SW2 line as trunks.
 * Why are we configuring trunk interfaces?
 * As you can see from the image, traffic from more than one VLAN will pass through the SW1-SW2 link. To ensure this traffic passes smoothly without interference, we need to use tagging.
@@ -112,8 +120,9 @@ SW(config)# vlan vlan-id
 SW1(config)# interface e1/0
 SW(config-if)# switchport mode trunk
 ```
+---
 ![Görsel 8](./img-8.png)
-
+---
 * When we try to configure the port as a trunk, we receive a warning: "We cannot configure the port as a trunk because our trunk encapsulation is set to auto."
 * First, we need to configure trunk encapsulation to the industry standard dot1q (802.1Q).
 * The command for encapsulation configuration is:
@@ -141,23 +150,39 @@ SW(config)# show interfaces trunk
 ```text
 SW(config-if)# switchport trunk native vlan vlan-number
 ```
+---
 ![Görsel 9](./img-9.png)
-
+---
 * When we changed the native VLAN, we received a Native VLAN mismatch warning like the one shown on the screen.
 * In case of native VLAN mismatch, packets may not be transmitted as intended or may even be lost. If the native VLAN on SW1 is 20 and the native VLAN on SW2 is 10, during inter-VLAN routing, the switch may mistake a packet sent to VLAN 10 for a packet from VLAN 20 because it's native VLAN 20.
 * Therefore, native VLAN compatibility is important on devices.
 * To solve this, let's configure our settings on SW2 immediately.
 * So, what is the function of the active in management domain section? It's this: We already mentioned that switches transmit tagged packets through trunk ports during inter-VLAN routing. Therefore, even if the VLANs passing through the trunk port are not connected to our switch, we need to create them on the switch so that it can tag and transmit the packets.
-
+---
 ![Görsel 10](./img-10.png)
-
+---
 * We've completed our configurations in SW2, and as you can see, the mismatch error has been eliminated. We've also defined the VLANs in the SW1 domain in SW2.
+---
+![Görsel 11](./img-11.png)
+---
 * Now let's do the same in SW1 to avoid VLAN mismatch issues.
-* Now let's configure our Ethernet 1/0 port as a trunk port. After all, switches (L2) cannot perform inter-VLAN routing. Since our router will be forwarding tagged packets when performing inter-VLAN routing, we must make our port a trunk port and configure the allowed VLANs.
-  ![Görsel 11](./img-11.png)
-
+---
+![Görsel 12](./img-12.png)
+---
+* Now let's configure our Ethernet 1/0 port as a trunk port.
+---
+![Görsel 13](./img-13.png)
+---
+* After all, switches (L2) cannot perform inter-VLAN routing.
+* Since our router will be forwarding tagged packets when performing inter-VLAN routing, we must make our port a trunk port and configure the allowed VLANs.
+---
+![Görsel 14](./img-14.png)
+---
 * As you can see, we've configured our settings, but I want to draw your attention to something here. If we look at the trunk interfaces using the `show trunk interfaces` command, we'll see that the native VLAN for the e1/0 port is set to 1, which could cause problems.
 * To prevent this, let's configure our native VLAN.
+---
+![Görsel 15](./img-15.png)
+---
 * Now we can start configuring on our router. You might ask why we're configuring on the router.
 * It's for the same reason we made the SW2 Ethernet 1/0 port a trunk port.
 * We didn't need to set the e1/0 port as a trunk; we could have connected 3 links from 3 switches to the router and done inter-VLAN routing that way, but that would be a waste of interfaces and a costly process.
@@ -166,19 +191,23 @@ SW(config-if)# switchport trunk native vlan vlan-number
 * If you ask what we'll do on the router, will we configure a trunk port? No.
 * A router on a stick (ROAS) is a system that connects a router and a switch with a single physical interface.
 * It appears as a "stick" in a network topology diagram, hence its name. We will perform routing operations through subinterfaces created on the e0/0 interface of R1.
- ![Görsel 12](./img-12.png)
+---
+ ![Görsel 16](./img-16.png)
+---
 * So, what did we do here? First, we activated our interface with `no shutdown`.
 * Then, to create the subinterface we will use for VLAN10, we entered the command `interface e0/0.10`.
 * Next, to specify the tagging that the router will do during inter-vlan routing, we used the following command: `encapsulation dot1q vlan vlan-id`.
 * Finally, we assigned the default gateway addresses for our VLANs.
 ---
-![Görsel 13](./img-13.png)
-![Görsel 14](./img-14.png)
+![Görsel 17](./img-17.png)
+![Görsel 18](./img-18.png)
 ---
-* As you can see from the images above, our subinterfaces have been created, and default gateways have been assigned IP addresses to the subinterfaces. When we examine the routes, we see that all the necessary steps for inter-VLAN routing have been completed.
+* As you can see from the images above, our subinterfaces have been created, and default gateways have been assigned IP addresses to the subinterfaces.
+* When we examine the routes, we see that all the necessary steps for inter-VLAN routing have been completed.
 * Now let's run a test.
-![Görsel 15](./img-15.png)
-
+---
+![Görsel 19](./img-19.png)
+---
 ## 🚀 Technologies & Tools Used
 * Cisco IOS (IOL Router & Switch Images)
 * EVE-NG Network Emulator
