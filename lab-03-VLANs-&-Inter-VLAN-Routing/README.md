@@ -57,6 +57,13 @@ The following objectives were achieved while building and configuring this topol
 * Let's enter interface-config mode in VLAN 10 and configure our ports as Access ports.
 * The command we will use to define a port as an Access port is as follows:
 
+```text
+SW1(config)# interface e0/1
+SW(config-if)# ip address 10.0.1.1 255.255.255.252
+SW1(config-if)# no shutdown
+```
+![Görsel 1](/.img-1.png)
+
 ## 🚀 Technologies & Tools Used
 * Cisco IOS (IOL Router & Switch Images)
 * EVE-NG Network Emulator
