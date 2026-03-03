@@ -1,4 +1,9 @@
 # 🛣️ Lab 02: Routing Fundamentals & Static Route 
+![EVE-NG](https://img.shields.io/badge/Platform-EVE--NG-orange?style=flat-square)
+![Cisco IOL](https://img.shields.io/badge/Image-Cisco%20IOL-blue?style=flat-square)
+![Difficulty](https://img.shields.io/badge/Difficulty-Intermadiate-orange?style=flat-square)
+
+---
 
 ## 📝 Overview
 This lab marks the transition from simple Local Area Networks (LANs) to multi-router enterprise environments.
