@@ -4,7 +4,7 @@
 
 ![EVE-NG](https://img.shields.io/badge/Platform-EVE--NG-orange?style=flat-square)
 ![Cisco IOL](https://img.shields.io/badge/Image-Cisco%20IOL-blue?style=flat-square)
-![Difficulty](https://img.shields.io/badge/Difficulty-beginner-green?style=flat-square)
+![Difficulty](https://img.shields.io/badge/Difficulty-Beginner-green?style=flat-square)
 
 ---
 
