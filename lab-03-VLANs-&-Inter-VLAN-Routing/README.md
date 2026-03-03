@@ -65,7 +65,7 @@ SW1(config)# interface e0/1
 SW(config-if)# ip address 10.0.1.1 255.255.255.252
 SW1(config-if)# no shutdown
 ```
-![Görsel 1].(/img-2.png)
+![Görsel 1](./img-2.png)
 
 ## 🚀 Technologies & Tools Used
 * Cisco IOS (IOL Router & Switch Images)
