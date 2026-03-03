@@ -1,6 +1,6 @@
 # 🔍 Troubleshooting Lab 01: The Isolated Host & The Silent Gateway
 
-### *Lab 02: Core Forwarding & Path Selection*
+### *Lab 01: The Isolated Host & The Silent Gateway*
 
 ![EVE-NG](https://img.shields.io/badge/Platform-EVE--NG-orange?style=flat-square)
 ![Cisco IOL](https://img.shields.io/badge/Image-Cisco%20IOL-blue?style=flat-square)
