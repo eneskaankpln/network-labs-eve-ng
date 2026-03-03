@@ -49,7 +49,7 @@ The following objectives were achieved while building and configuring this topol
 
 * First, let's look at the VLANs on our switch. Currently, the default VLANs are VLAN1, 1002, and 1005. We will change the port modes and create the VLANs step by step.
 ---
-![Görsel 1](/.img-1.png)
+![Görsel 1](./img-1.png)
 ---
 * Let's begin!
 
