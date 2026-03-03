@@ -1,4 +1,4 @@
-# 🖧 🔀 lab-03: VLANs & Inter-VLAN Routing
+# 🖧 🔀 Lab 03: VLANs & Inter-VLAN Routing
 
 This project is a network topology designed to model fundamental switching concepts, VLAN configuration, and Router-on-a-Stick (ROAS) architecture for communication between different networks. It has been built and tested using Cisco IOL images on EVE-NG.
 
