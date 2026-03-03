@@ -22,10 +22,10 @@ All broken lab scenarios are built and tested using **EVE-NG** with standard Cis
 ## 📂 Scenario Index
 *(Click on a scenario to view the topology, the reported issue, and the step-by-step resolution.)*
 
-* 🖧 **[Lab 01: IPv4 Addressing & Default Gateway Issues](./IPv4-Addressing/)** - *Coming Soon!*
-* 🔄 **[Lab 02: VLAN & Trunking Misconfigurations](./VLAN-Troubleshooting/)** - *Planned*
-* 🛣️ **[Lab 03: OSPF Neighbor Adjacency Failures](./OSPF-Troubleshooting/)** - *Planned*
-* 🛡️ **[Lab 04: ACL Traffic Blocking Analysis](./ACL-Troubleshooting/)** - *Planned*
+* 🖧 **[Lab 01: IPv4 Addressing Issues](./troubleshooting-scenarios/01-IPv4-Addressing-Issues/)** - *Loaded !*
+* 🔄 **[Lab 02: VLAN & Trunking Misconfigurations](./troubleshooting-scenarios/Routing-Fundamentals-&-Static-Routing/)** - *Loaded*
+* 🛣️ **[VLANs & Inter VLAN Routing](./troubleshooting-scenarios/)** - *Planned*
+* 🛡️ **[Lab 04: ACL Traffic Blocking Analysis](./troubleshooting-scenarios/)** - *Planned*
 
 ---
 *"A good engineer knows how to configure a protocol. A great engineer knows how to fix it when it breaks."*
