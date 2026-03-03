@@ -61,9 +61,8 @@ The following objectives were achieved while building and configuring this topol
 * The command we will use to define a port as an Access port is as follows:
 
 ```text
-SW1(config)# interface e0/1
-SW(config-if)# ip address 10.0.1.1 255.255.255.252
-SW1(config-if)# no shutdown
+SW1(config)# interface e0/0
+SW(config-if)# switchport mode access
 ```
 ![Görsel 1](./img-2.png)
 
