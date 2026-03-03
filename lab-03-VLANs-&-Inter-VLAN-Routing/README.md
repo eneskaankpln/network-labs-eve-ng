@@ -42,6 +42,21 @@ The following objectives were achieved while building and configuring this topol
 4.  Configuring the physical interface (e0/0) on router R1 with sub-interfaces, applying `encapsulation dot1Q`, and assigning the respective Default Gateway IP addresses.
 5.  Verifying end-to-end connectivity between devices in different VLANs using ICMP (ping).
 
+## 🛠️ Step-by-Step Configuration Guide
+
+* In this lab, we leave the VPC IP, default gateway assignments, and router interface IP assignments up to you.
+* Assuming you have completed the configurations mentioned above, let's begin the configurations step by step.
+
+* First, let's look at the VLANs on our switch. Currently, the default VLANs are VLAN1, 1002, and 1005. We will change the port modes and create the VLANs step by step.
+* Let's begin!
+
+* First, let's configure the ports connected to the VLAN 10 end-hosts as Access ports. As mentioned earlier, Access ports are the ports that connect end-hosts such as PCs, Servers, and Printers to our switches.
+* To reiterate why we configure them as Access ports: Access ports are ports that do not perform VLAN tagging.
+* This means that we know the links connecting us to our devices in VLAN 10 will not carry another alternative VLAN, so we configure these ports as Access ports.
+* VLAN tagging is costly. Although the cost is small, we should avoid it.
+* Let's enter interface-config mode in VLAN 10 and configure our ports as Access ports.
+* The command we will use to define a port as an Access port is as follows:
+
 ## 🚀 Technologies & Tools Used
 * Cisco IOS (IOL Router & Switch Images)
 * EVE-NG Network Emulator
