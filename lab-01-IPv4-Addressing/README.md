@@ -1,4 +1,9 @@
 # 🖥️ Lab 01: IPv4 Addressing & Basic Routing
+![EVE-NG](https://img.shields.io/badge/Platform-EVE--NG-orange?style=flat-square)
+![Cisco IOL](https://img.shields.io/badge/Image-Cisco%20IOL-blue?style=flat-square)
+![Difficulty](https://img.shields.io/badge/Difficulty-beginner-green?style=flat-square)
+
+---
 
 ## 🎯 Objective
 The primary goal of this lab is to understand basic IPv4 addressing, subnetting, and the role of a router in forwarding traffic between two distinct, directly connected Local Area Networks (LANs). 
