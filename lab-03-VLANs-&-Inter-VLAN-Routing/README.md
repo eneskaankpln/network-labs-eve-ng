@@ -16,9 +16,10 @@ To fully understand this lab, it is important to be familiar with the following 
 * **Trunk Port:** A switch port used to interconnect switches or connect a switch to a router. Unlike an access port, a trunk port is designed to carry traffic for multiple VLANs simultaneously across a single physical link. It uses the **IEEE 802.1Q** encapsulation standard to "tag" Ethernet frames with their respective VLAN IDs, ensuring the receiving device knows which network the traffic belongs to.
 * **Inter-VLAN Routing & ROAS (Router-on-a-Stick):** By design, devices in different VLANs cannot communicate with each other at Layer 2. To allow VLAN 10 to talk to VLAN 20 or 30, a Layer 3 device (a router) is required. **ROAS** is an efficient routing method where a single physical interface on a router is logically divided into multiple "sub-interfaces." Each sub-interface is assigned to a specific VLAN, tagged with 802.1Q, and acts as the Default Gateway for that network.
 
-## 📌 Topology Diagram
+## 📌 Topology Diagram & Downloading LAB
 ![Topology Diagram](./topology.png) 
 
+[Download VLANs & Inter-VLAN Routing (.unl)](./VLAN.unl)
 
 ## 🏢 Network Architecture & VLAN Table
 
