@@ -131,3 +131,4 @@
 * Let's add VLAN20 to SW2.
 ---
 ![Missing VLAN20](./VLAN20.1.png)
+![Successfull Ping!](./ping-vlan-nonexistence-soliton.png)
