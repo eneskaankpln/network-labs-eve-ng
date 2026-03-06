@@ -82,7 +82,14 @@
 * By setting SW2's Native VLAN to 99, we resolved the INC-104 issue.
 * Now let's examine the issue labeled INC-101.
 * | INC-101   | High     | Office users on SW1 cannot communicate with Office users on SW2. Gateway reachable. |
-* 
+* If you paid attention to our previous images, you will have seen the reason for the error: on SW1 e1/0 trunk port, only VLAN 20 is allowed, while on SW2 e0/3 trunk port, only VLAN 10 is allowed.
+*  Because of this, the connection (trunk line) between the two switches may not be carrying the VLAN to which the "Office" users belong.
+![Can't Reach](./can't-reach-int-status.png)
+*  To resolve this, let's reconfigure the allowed VLANs on both trunk ports (SW1's e1/0, SW2's e0/3).
+![SW1's & SW2's Allowed VLAN's](./allowed-vlans.png)
+*  Let's run a ping test now.
+![Successfull ping amoung Office Users](./succesfull-ping.png)
+*  We have resolved the communication issue caused by the allowed VLANs on the trunk ports.
 
 
 
