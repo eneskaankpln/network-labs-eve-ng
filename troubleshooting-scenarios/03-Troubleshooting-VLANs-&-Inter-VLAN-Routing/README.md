@@ -80,8 +80,14 @@
 * Since we want to use VLAN 99, let's change the native VLAN for switch2 e0/3 port.
 ![SW2 e0/3 Native Vlan Change](./native-vlan-change.png)
 * By setting SW2's Native VLAN to 99, we resolved the INC-104 issue.
+| Ticket ID | Severity | Description                                                                         |
+| --------- | -------- | ----------------------------------------------------------------------------------- |
+| INC-104   | Low      | Console flooded with CDP Native VLAN mismatch warnings.                             |
+
 * Now let's examine the issue labeled INC-101.
-* | INC-101   | High     | Office users on SW1 cannot communicate with Office users on SW2. Gateway reachable. |
+| Ticket ID | Severity | Description                                                                         |
+| --------- | -------- | ----------------------------------------------------------------------------------- |  
+| INC-101   | High     | Office users on SW1 cannot communicate with Office users on SW2. Gateway reachable. |
 * If you paid attention to our previous images, you will have seen the reason for the error: on SW1 e1/0 trunk port, only VLAN 20 is allowed, while on SW2 e0/3 trunk port, only VLAN 10 is allowed.
 *  Because of this, the connection (trunk line) between the two switches may not be carrying the VLAN to which the "Office" users belong.
 ---
@@ -93,6 +99,21 @@
 ---
 ![Successfull ping amoung Office Users](./succesfull-ping.png)
 *  We have resolved the communication issue caused by the allowed VLANs on the trunk ports.
-
-
+* Now let's examine the issue labeled INC-105
+| Ticket ID | Severity | Description                                                                         |
+| --------- | -------- | ----------------------------------------------------------------------------------- |
+| INC-105   | High     | Home VLAN can reach Office, but Office cannot reach Home.                           |
+* Let's perform a ping test between the Office and Home devices.
+![Home & Office Reachability](./home-office-reachability.png)
+---
+* We are getting a "not reachable" error when pinging from the Home device to the Office devices, and a timeout when pinging from the Office device to the Home device.
+* ***Request Timed Out:*** This message indicates that the packet you sent may have reached its destination, but there is a problem on the return journey or the packet got stuck somewhere.
+* ***Meaning:***  "I sent the signal, waited a reasonable amount of time, but received no response."
+* ***Destination Host Unreachable:*** This message indicates that the packet hasn't even started its journey yet, or it has encountered a "stop" sign halfway through.
+* ***Meaning:*** "I know where I'm going, but I can't find a way to get there" or "My gateway told me it doesn't know where this address is."
+* All of this essentially means that the package found its way on the Office -> Home route but had trouble on the return trip, and couldn't even find its way on the Home -> Office route.
+* There are two possible problems in this situation: primarily, an issue with the allowed VLAN on the trunk port in the router-SW2 connection; secondly, there might be a problem with the routing.
+* Let's check them one by one.
+![SW2 e1/0 vlans](./SW2-e1-0.png)
+![Missing VLAN20](./VLAN20.png)
 
