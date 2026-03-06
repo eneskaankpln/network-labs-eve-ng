@@ -106,9 +106,11 @@
 ![Successfull ping amoung Office Users](./succesfull-ping.png)
 *  We have resolved the communication issue caused by the allowed VLANs on the trunk ports.
 * Now let's examine the issue labeled INC-105
+
 | Ticket ID | Severity | Description                                                                         |
 | --------- | -------- | ----------------------------------------------------------------------------------- |
 | INC-105   | High     | Home VLAN can reach Office, but Office cannot reach Home.                           |
+
 * Let's perform a ping test between the Office and Home devices.
 ![Home & Office Reachability](./home-office-reachability.png)
 ---
