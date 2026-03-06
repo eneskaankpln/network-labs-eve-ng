@@ -78,6 +78,10 @@
 ![Trunk Interfaces](./interfaces-trunk.png)
 * You can find out which VLAN has the error by using the SHOW INTERFACES TRUNK command. Or, if you look at the output, one of the ports is VLAN1 "(1)" while the other is VLAN99 (99).
 * Since we want to use VLAN 99, let's change the native VLAN for switch2 e0/3 port.
+![SW2 e0/3 Native Vlan Change](./native-vlan-change.png)
+* By setting SW2's Native VLAN to 99, we resolved the INC-104 issue.
+* Now let's examine the issue labeled INC-101.
+* | INC-101   | High     | Office users on SW1 cannot communicate with Office users on SW2. Gateway reachable. |
 * 
 
 
