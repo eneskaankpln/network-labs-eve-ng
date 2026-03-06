@@ -136,3 +136,29 @@
 | Ticket ID | Severity | Description                                                                         |
 | --------- | -------- | ----------------------------------------------------------------------------------- |
 | INC-102   | Critical | HR department completely isolated. Cannot ping gateway.                             |
+
+* From the output, we understand that the packet doesn't even know its intended route.
+* We know that the allowed VLANs are correct on the SW2 e1/0 interface.
+* The only remaining possibility is a configuration error on the router. Let's check the router.
+
+![R1 IP Interface Brief](./R1-1.png)
+---
+* When we examine the interface briefs, we don't see any visible errors.
+* The link status is up, IP addresses are correctly assigned to the sub-interfaces, and the route should also be correct, so let's check.
+![R1 route](./R1-2.png)
+---
+There are no visible errors. Let's examine the device's running configuration.
+![R1's Running-config](./R1-3.png)
+---
+* It appears that encapsulation is incorrectly configured on the e/0.30 subinterface.
+* If you write the wrong VLAN encapsulation on the subinterface of the router, that subinterface cannot recognize the correct VLAN traffic.
+* According to this configuration, the router now expects packets tagged with VLAN 3 instead of VLAN 30.
+* Packets coming from the switch trunk arrive with the VLAN 30 tag, and The router cannot match these packets and drops them.
+* To fix this let's correct the encapsulation of subinterface.
+![R1 Subinterface 0/0.30's Encapsulation Correction](./R1-4.png)
+* As you can see, after the encapsulation fix, the router recognized the tags in the packets and was able to route them.
+
+| Ticket ID | Severity | Description                                                                         |
+| --------- | -------- | ----------------------------------------------------------------------------------- |
+| INC-103   | Medium   | Intermittent packet loss between VLAN 10 and VLAN 20.                               |
+
