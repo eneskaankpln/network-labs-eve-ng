@@ -40,9 +40,8 @@
 | --------- | -------- | ----------------------------------------------------------------------------------- |
 | INC-101   | High     | Office users on SW1 cannot communicate with Office users on SW2. Gateway reachable. |
 | INC-102   | Critical | HR department completely isolated. Cannot ping gateway.                             |
-| INC-103   | Medium   | Intermittent packet loss between VLAN 10 and VLAN 20.                               |
-| INC-104   | Low      | Console flooded with CDP Native VLAN mismatch warnings.                             |
-| INC-105   | High     | Home VLAN can reach Office, but Office cannot reach Home.                           |
+| INC-103   | Low      | Console flooded with CDP Native VLAN mismatch warnings.                             |
+| INC-104   | High     | Home VLAN can reach Office, but Office cannot reach Home.                           |
 
 
 ## 🚨 Scenario Background
@@ -83,7 +82,7 @@
 
 | Ticket ID | Severity | Description                                                                         |
 | --------- | -------- | ----------------------------------------------------------------------------------- |
-| INC-104   | Low      | Console flooded with CDP Native VLAN mismatch warnings.                             |
+| INC-103   | Low      | Console flooded with CDP Native VLAN mismatch warnings.                             |
 
 * Now let's examine the issue labeled INC-101.
 
@@ -109,7 +108,7 @@
 
 | Ticket ID | Severity | Description                                                                         |
 | --------- | -------- | ----------------------------------------------------------------------------------- |
-| INC-105   | High     | Home VLAN can reach Office, but Office cannot reach Home.                           |
+| INC-104   | High     | Home VLAN can reach Office, but Office cannot reach Home.                           |
 
 * Let's perform a ping test between the Office and Home devices.
 ![Home & Office Reachability](./home-office-reachability.png)
@@ -158,7 +157,5 @@ There are no visible errors. Let's examine the device's running configuration.
 ![R1 Subinterface 0/0.30's Encapsulation Correction](./R1-4.png)
 * As you can see, after the encapsulation fix, the router recognized the tags in the packets and was able to route them.
 
-| Ticket ID | Severity | Description                                                                         |
-| --------- | -------- | ----------------------------------------------------------------------------------- |
-| INC-103   | Medium   | Intermittent packet loss between VLAN 10 and VLAN 20.                               |
+![R1's gateway reachability](./R1-4.png)
 
