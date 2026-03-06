@@ -50,15 +50,6 @@
 * The physical topology remains exactly the same as the original lab. The IP subnetting scheme (`192.168.1.0/24` divided into `/26` subnets) and the intended VLAN assignments are unchanged. 
 * However, users are reporting several connectivity issues this morning.
 
-### 🎫 Active Helpdesk Tickets
-
-| Ticket ID | Department | Reported Issue |
-| :--- | :--- | :--- |
-| **INC-001** | Office (VLAN 10) | "PCs connected to SW1 cannot ping the Office PCs connected to SW2. However, they can reach their Default Gateway." |
-| **INC-002** | HR (VLAN 30) | "HR computers cannot access the internet or communicate with the Office and Home departments. Pings to the Default Gateway (`192.168.1.126`) are failing." |
-| **INC-003** | Network Admin | "The console lines on SW1 and SW2 are being flooded with CDP (Cisco Discovery Protocol) warning messages every minute, making it hard to type commands." |
-
----
 ## 🎯 Objective
 
 ### Restore full:
@@ -73,20 +64,21 @@
 
 * Without changing topology.
 
-## 🛠️ Troubleshooting Tasks & Methodology
-
-To solve these tickets, you will need to verify Layer 2 and Layer 3 configurations. Follow this structured approach:
-
-1.  **Verify Layer 2 Connectivity (Switches):**
-    * Check if the access ports are assigned to the correct VLANs using `show vlan brief`.
-    * Verify the status of the trunk links between switches using `show interfaces trunk`. Look closely at allowed VLANs and Native VLANs.
-2.  **Verify Layer 3 Connectivity (Router):**
-    * Check the interface status on R1 using `show ip interface brief`.
-    * Verify the 802.1Q encapsulation and VLAN mapping using `show run interface e0/0.X`.
-    * Ensure the subnet masks and IP addresses match your design table.
-
 ---
 ## 🧩 Hidden Misconfigurations (Multi-Failure Design)
 * This lab intentionally includes five simultaneous configuration errors.
+
+## 🛠️ Troubleshooting Steps
+
+![VLAN mismatch](./vlan-mismatch.jpg)
+* As soon as we enter the CLI, we see the following warning in the console line. We can tell it's a warning from its severity level.
+* *Mar  6 17:02:31.111: %CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on Ethernet1/0 (99), with Switch Ethernet0/3 (1).
+* The severity level, the next value after facility (CDP), is 4.
+* The warning indicates a VLAN mismatch. We've already discussed the problems that VLAN mismatches can cause, so let's fix it.
+![Trunk Interfaces](./interfaces-trunk.jpg)
+* You can find out which VLAN has the error by using the SHOW INTERFACES TRUNK command. Or, if you look at the output, one of the ports is VLAN1 "(1)" while the other is VLAN99 (99).
+* Since we want to use VLAN 99, let's change the native VLAN for switch2 e0/3 port.
+* 
+
 
 
