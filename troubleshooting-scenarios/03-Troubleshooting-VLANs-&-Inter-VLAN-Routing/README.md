@@ -70,12 +70,12 @@
 
 ## 🛠️ Troubleshooting Steps
 
-![VLAN mismatch](./vlan-mismatch.jpg)
+![VLAN mismatch](./vlan-mismatch.png)
 * As soon as we enter the CLI, we see the following warning in the console line. We can tell it's a warning from its severity level.
 * *Mar  6 17:02:31.111: %CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on Ethernet1/0 (99), with Switch Ethernet0/3 (1).
 * The severity level, the next value after facility (CDP), is 4.
 * The warning indicates a VLAN mismatch. We've already discussed the problems that VLAN mismatches can cause, so let's fix it.
-![Trunk Interfaces](./interfaces-trunk.jpg)
+![Trunk Interfaces](./interfaces-trunk.png)
 * You can find out which VLAN has the error by using the SHOW INTERFACES TRUNK command. Or, if you look at the output, one of the ports is VLAN1 "(1)" while the other is VLAN99 (99).
 * Since we want to use VLAN 99, let's change the native VLAN for switch2 e0/3 port.
 * 
