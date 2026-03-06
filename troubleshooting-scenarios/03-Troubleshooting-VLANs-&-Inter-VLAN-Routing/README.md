@@ -132,3 +132,7 @@
 ---
 ![Missing VLAN20](./VLAN20.1.png)
 ![Successfull Ping!](./ping-vlan-nonexistence-soliton.png)
+
+| Ticket ID | Severity | Description                                                                         |
+| --------- | -------- | ----------------------------------------------------------------------------------- |
+| INC-102   | Critical | HR department completely isolated. Cannot ping gateway.                             |
