@@ -114,6 +114,12 @@
 * All of this essentially means that the package found its way on the Office -> Home route but had trouble on the return trip, and couldn't even find its way on the Home -> Office route.
 * There are two possible problems in this situation: primarily, an issue with the allowed VLAN on the trunk port in the router-SW2 connection; secondly, there might be a problem with the routing.
 * Let's check them one by one.
+---
 ![SW2 e1/0 vlans](./SW2-e1-0.png)
 ![Missing VLAN20](./VLAN20.png)
-
+* Although the `allowed VLANs` section is as we want it, we see that VLAN 20 is missing in the `vlans active in management domain` section.
+* Therefore, when sending packets to VLAN 20, VLAN 10 packets with their own tag successfully reach the routing stage, but after receiving the VLAN 20 tag on the return journey, they get lost.
+* This is also the reason why packets with the VLAN 20 tag cannot find their way.
+* Let's add VLAN20 to SW2.
+---
+![Missing VLAN20](./VLAN20.1.png)
