@@ -80,14 +80,20 @@
 * Since we want to use VLAN 99, let's change the native VLAN for switch2 e0/3 port.
 ![SW2 e0/3 Native Vlan Change](./native-vlan-change.png)
 * By setting SW2's Native VLAN to 99, we resolved the INC-104 issue.
+
 | Ticket ID | Severity | Description                                                                         |
 | --------- | -------- | ----------------------------------------------------------------------------------- |
 | INC-104   | Low      | Console flooded with CDP Native VLAN mismatch warnings.                             |
 
 * Now let's examine the issue labeled INC-101.
+
 | Ticket ID | Severity | Description                                                                         |
-| --------- | -------- | ----------------------------------------------------------------------------------- |  
+| --------- | -------- | ----------------------------------------------------------------------------------- |
 | INC-101   | High     | Office users on SW1 cannot communicate with Office users on SW2. Gateway reachable. |
+
+---  
+
+
 * If you paid attention to our previous images, you will have seen the reason for the error: on SW1 e1/0 trunk port, only VLAN 20 is allowed, while on SW2 e0/3 trunk port, only VLAN 10 is allowed.
 *  Because of this, the connection (trunk line) between the two switches may not be carrying the VLAN to which the "Office" users belong.
 ---
